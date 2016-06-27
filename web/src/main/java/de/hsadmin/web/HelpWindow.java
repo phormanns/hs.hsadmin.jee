@@ -1,9 +1,11 @@
 package de.hsadmin.web;
 
+import com.vaadin.server.ExternalResource;
+import com.vaadin.ui.BrowserFrame;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Label;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
@@ -11,19 +13,23 @@ public class HelpWindow extends Window {
 
 	private static final long serialVersionUID = 1L;
 	
-	private static final String HELP_HTML_SNIPPET = "Contact us in case of further questions";
 
-	public HelpWindow() {
+	public HelpWindow(final String helpTopic) {
 		// Create a sub-window and set the content
 		super("Help Window");
+		setWidth("80%");
+		setHeight("80%");
 		// Center it in the browser window
 		center();
 
-		VerticalLayout subContent = new VerticalLayout();
+		final VerticalLayout subContent = new VerticalLayout();
 		subContent.setMargin(true);
-
-		subContent.addComponent(new Label(HELP_HTML_SNIPPET));
-		Button ok = new Button("OK");
+		subContent.setSizeFull();
+		final String helpBaseURL = I18N.getText("help.baseurl");
+		final Component helpContent = new BrowserFrame("Help Window", new ExternalResource(helpBaseURL + helpTopic));
+		helpContent.setSizeFull();
+		subContent.addComponent(helpContent);
+		final Button ok = new Button("OK");
 		ok.addClickListener(new ClickListener() {
 			private static final long serialVersionUID = -6121701552072481416L;
 
@@ -32,6 +38,8 @@ public class HelpWindow extends Window {
 			}
 		});
 		subContent.addComponent(ok);
+		subContent.setExpandRatio(helpContent, 1.0f);
+		subContent.setExpandRatio(ok, 0.0f);
 
 		setContent(subContent);
 	}

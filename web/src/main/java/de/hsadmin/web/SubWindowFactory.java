@@ -10,13 +10,13 @@ import de.hsadmin.rpc.HSAdminSession;
 public class SubWindowFactory extends AbstractWindowFactory {
 
 	@Override
-	public Window getSubWindow(HSTab parent, String type, String action, HSAdminSession session) 
+	public Window getSubWindow(final HSTab parent, final String type, final String action, final HSAdminSession session) 
 	{
 		if (type == null) {
 			return null;
 		}
 		if (action.equalsIgnoreCase("help")) {
-			return new HelpWindow();
+			return new HelpWindow(parent.getModule());
 		}
 		final Map<String, String> whereContext = new HashMap<>();
 		whereContext.put(parent.getSelectPropertyName(), parent.getSelectPropertyValue().toString());

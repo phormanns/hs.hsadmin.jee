@@ -37,7 +37,8 @@ public class HSTab extends CustomComponent {
 	private Table grid;
 
 
-	public HSTab(final String source, final HSAdminSession session, final String selectPropertyName, final Object selectPropertyValue, final String rowIdPropertyName) {
+	public HSTab(final String source, final HSAdminSession session, final String selectPropertyName, final Object selectPropertyValue, final String rowIdPropertyName) 
+	{
 		super();
 		setSizeFull();
 		this.module = source;
@@ -55,6 +56,11 @@ public class HSTab extends CustomComponent {
 		layout.setExpandRatio(dataTable, 1.0f);
 		dataTable.setHeight("100%");
 		setCompositionRoot(layout);
+	}
+	
+	public String getModule() 
+	{
+		return module;
 	}
 
 	public void fillTable() 

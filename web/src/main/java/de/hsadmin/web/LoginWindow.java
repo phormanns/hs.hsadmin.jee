@@ -99,7 +99,7 @@ public class LoginWindow extends Window {
 			}
 		});
 		subContent.addComponent(okButton);
-		final Link linkToOld = new Link(I18N.getText("main.panel.link_to_old"), new ExternalResource("https://admin.hostsharing.net/"));
+		final Link linkToOld = new Link(I18N.getText("main.panel.link_to_old"), new ExternalResource("https://admin.hostsharing.net/hsarweb"));
 		subContent.addComponent(linkToOld);
 
 		setContent(subContent);
